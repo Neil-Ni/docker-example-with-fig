@@ -1,0 +1,30 @@
+mysql:
+  image: mysql:5.6
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: "password"
+
+sails:
+  build: ./sails
+  command: sh ./start
+  volumes:
+    - ./sails:/sails
+  working_dir: /sails
+  links:
+    - mysql 
+  ports:
+    - "1337:1337"
+    - "3000:3000"
+
+rails:
+  build: ./rails
+  command: sh ./start
+  volumes:
+    - ./rails:/rails
+  working_dir: /rails
+  ports:
+    - "3000:3000"
+  volumes_from:
+    - "sails"
+  net: "container:docker_sails_1"

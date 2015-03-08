@@ -1,0 +1,3 @@
+bundle
+bundle exec rake db:create
+bundle exec rails s -p 3000

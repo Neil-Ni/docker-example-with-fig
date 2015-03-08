@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: password
+  host: mysql
+
+development:
+  <<: *default
+  database: rails_development
+
+test:
+  <<: *default
+  database: rails_test
+
+production:
+  <<: *default
+  database: rails_production
